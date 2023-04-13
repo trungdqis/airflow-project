@@ -1,0 +1,32 @@
+[2023-04-13T14:24:01.475+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: first_dag.save_datetime scheduled__2023-04-13T14:23:00+00:00 [queued]>
+[2023-04-13T14:24:01.660+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: first_dag.save_datetime scheduled__2023-04-13T14:23:00+00:00 [queued]>
+[2023-04-13T14:24:01.661+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T14:24:01.662+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 1
+[2023-04-13T14:24:01.663+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T14:24:01.684+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonOperator): save_datetime> on 2023-04-13 14:23:00+00:00
+[2023-04-13T14:24:01.689+0000] {standard_task_runner.py:55} INFO - Started process 312 to run task
+[2023-04-13T14:24:01.693+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'first_dag', 'save_datetime', 'scheduled__2023-04-13T14:23:00+00:00', '--job-id', '31', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmpg4neb_ac']
+[2023-04-13T14:24:01.696+0000] {standard_task_runner.py:83} INFO - Job 31: Subtask save_datetime
+[2023-04-13T14:24:01.780+0000] {task_command.py:389} INFO - Running <TaskInstance: first_dag.save_datetime scheduled__2023-04-13T14:23:00+00:00 [running]> on host 6a1c33c9be4a
+[2023-04-13T14:24:01.873+0000] {taskinstance.py:1518} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=first_dag
+AIRFLOW_CTX_TASK_ID=save_datetime
+AIRFLOW_CTX_EXECUTION_DATE=2023-04-13T14:23:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-04-13T14:23:00+00:00
+[2023-04-13T14:24:01.889+0000] {taskinstance.py:1776} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/first_dag.py", line 29, in save_datetime
+    raise Exception('No processed datetime value.')
+Exception: No processed datetime value.
+[2023-04-13T14:24:01.898+0000] {taskinstance.py:1332} INFO - Marking task as FAILED. dag_id=first_dag, task_id=save_datetime, execution_date=20230413T142300, start_date=20230413T142401, end_date=20230413T142401
+[2023-04-13T14:24:01.911+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 31 for task save_datetime (No processed datetime value.; 312)
+[2023-04-13T14:24:01.945+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-04-13T14:24:01.974+0000] {taskinstance.py:2596} INFO - 0 downstream tasks scheduled from follow-on schedule check

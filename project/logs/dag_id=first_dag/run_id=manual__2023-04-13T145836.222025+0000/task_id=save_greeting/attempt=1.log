@@ -1,0 +1,42 @@
+[2023-04-13T14:58:39.888+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: first_dag.save_greeting manual__2023-04-13T14:58:36.222025+00:00 [queued]>
+[2023-04-13T14:58:40.017+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: first_dag.save_greeting manual__2023-04-13T14:58:36.222025+00:00 [queued]>
+[2023-04-13T14:58:40.017+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T14:58:40.018+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 1
+[2023-04-13T14:58:40.018+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T14:58:40.033+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonOperator): save_greeting> on 2023-04-13 14:58:36.222025+00:00
+[2023-04-13T14:58:40.037+0000] {standard_task_runner.py:55} INFO - Started process 1357 to run task
+[2023-04-13T14:58:40.041+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'first_dag', 'save_greeting', 'manual__2023-04-13T14:58:36.222025+00:00', '--job-id', '60', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmpfqcw80bm']
+[2023-04-13T14:58:40.044+0000] {standard_task_runner.py:83} INFO - Job 60: Subtask save_greeting
+[2023-04-13T14:58:40.116+0000] {task_command.py:389} INFO - Running <TaskInstance: first_dag.save_greeting manual__2023-04-13T14:58:36.222025+00:00 [running]> on host 6a1c33c9be4a
+[2023-04-13T14:58:40.198+0000] {taskinstance.py:1518} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=first_dag
+AIRFLOW_CTX_TASK_ID=save_greeting
+AIRFLOW_CTX_EXECUTION_DATE=2023-04-13T14:58:36.222025+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-04-13T14:58:36.222025+00:00
+[2023-04-13T14:58:40.218+0000] {taskinstance.py:1776} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/first_dag.py", line 26, in save_greeting
+    df = pd.DataFrame(gr_processed)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/frame.py", line 717, in __init__
+    typ=manager,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/internals/construction.py", line 304, in ndarray_to_mgr
+    values = _prep_ndarray(values, copy=copy)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/internals/construction.py", line 545, in _prep_ndarray
+    values = convert(values)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/internals/construction.py", line 533, in convert
+    res = maybe_convert_platform(v)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/dtypes/cast.py", line 124, in maybe_convert_platform
+    if arr.dtype == object:
+AttributeError: 'LazyXComAccess' object has no attribute 'dtype'
+[2023-04-13T14:58:40.229+0000] {taskinstance.py:1332} INFO - Marking task as FAILED. dag_id=first_dag, task_id=save_greeting, execution_date=20230413T145836, start_date=20230413T145839, end_date=20230413T145840
+[2023-04-13T14:58:40.243+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 60 for task save_greeting ('LazyXComAccess' object has no attribute 'dtype'; 1357)
+[2023-04-13T14:58:40.254+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-04-13T14:58:40.271+0000] {taskinstance.py:2596} INFO - 0 downstream tasks scheduled from follow-on schedule check

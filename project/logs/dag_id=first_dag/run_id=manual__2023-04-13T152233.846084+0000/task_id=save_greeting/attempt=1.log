@@ -1,0 +1,25 @@
+[2023-04-13T15:22:36.569+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: first_dag.save_greeting manual__2023-04-13T15:22:33.846084+00:00 [queued]>
+[2023-04-13T15:22:36.579+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: first_dag.save_greeting manual__2023-04-13T15:22:33.846084+00:00 [queued]>
+[2023-04-13T15:22:36.579+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T15:22:36.580+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 1
+[2023-04-13T15:22:36.581+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T15:22:36.596+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonOperator): save_greeting> on 2023-04-13 15:22:33.846084+00:00
+[2023-04-13T15:22:36.600+0000] {standard_task_runner.py:55} INFO - Started process 2091 to run task
+[2023-04-13T15:22:36.602+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'first_dag', 'save_greeting', 'manual__2023-04-13T15:22:33.846084+00:00', '--job-id', '111', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmphxchxe8m']
+[2023-04-13T15:22:36.604+0000] {standard_task_runner.py:83} INFO - Job 111: Subtask save_greeting
+[2023-04-13T15:22:36.670+0000] {task_command.py:389} INFO - Running <TaskInstance: first_dag.save_greeting manual__2023-04-13T15:22:33.846084+00:00 [running]> on host 6a1c33c9be4a
+[2023-04-13T15:22:36.741+0000] {taskinstance.py:1518} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=first_dag
+AIRFLOW_CTX_TASK_ID=save_greeting
+AIRFLOW_CTX_EXECUTION_DATE=2023-04-13T15:22:33.846084+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-04-13T15:22:33.846084+00:00
+[2023-04-13T15:22:36.754+0000] {logging_mixin.py:137} INFO - Hello World 2023-04-13 15:22:35.700931
+[2023-04-13T15:22:36.756+0000] {logging_mixin.py:137} INFO - Hello World 2023-04-13 15:22:34.599698Hello World 2023-04-13 15:22:35.700931
+[2023-04-13T15:22:36.757+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-04-13T15:22:36.766+0000] {taskinstance.py:1332} INFO - Marking task as SUCCESS. dag_id=first_dag, task_id=save_greeting, execution_date=20230413T152233, start_date=20230413T152236, end_date=20230413T152236
+[2023-04-13T15:22:36.815+0000] {local_task_job.py:212} INFO - Task exited with return code 0
+[2023-04-13T15:22:36.832+0000] {taskinstance.py:2596} INFO - 0 downstream tasks scheduled from follow-on schedule check

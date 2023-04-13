@@ -1,0 +1,33 @@
+[2023-04-13T15:08:15.625+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: first_dag.save_greeting scheduled__2023-04-13T15:06:00+00:00 [queued]>
+[2023-04-13T15:08:15.636+0000] {taskinstance.py:1090} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: first_dag.save_greeting scheduled__2023-04-13T15:06:00+00:00 [queued]>
+[2023-04-13T15:08:15.637+0000] {taskinstance.py:1288} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T15:08:15.637+0000] {taskinstance.py:1289} INFO - Starting attempt 1 of 1
+[2023-04-13T15:08:15.638+0000] {taskinstance.py:1290} INFO - 
+--------------------------------------------------------------------------------
+[2023-04-13T15:08:15.663+0000] {taskinstance.py:1309} INFO - Executing <Task(PythonOperator): save_greeting> on 2023-04-13 15:06:00+00:00
+[2023-04-13T15:08:15.668+0000] {standard_task_runner.py:55} INFO - Started process 1657 to run task
+[2023-04-13T15:08:15.671+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'first_dag', 'save_greeting', 'scheduled__2023-04-13T15:06:00+00:00', '--job-id', '81', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmpjb27eff7']
+[2023-04-13T15:08:15.673+0000] {standard_task_runner.py:83} INFO - Job 81: Subtask save_greeting
+[2023-04-13T15:08:15.743+0000] {task_command.py:389} INFO - Running <TaskInstance: first_dag.save_greeting scheduled__2023-04-13T15:06:00+00:00 [running]> on host 6a1c33c9be4a
+[2023-04-13T15:08:15.827+0000] {taskinstance.py:1518} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=first_dag
+AIRFLOW_CTX_TASK_ID=save_greeting
+AIRFLOW_CTX_EXECUTION_DATE=2023-04-13T15:06:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-04-13T15:06:00+00:00
+[2023-04-13T15:08:15.843+0000] {logging_mixin.py:137} INFO - Hello World 2023-04-13 15:08:14.704052
+[2023-04-13T15:08:15.848+0000] {taskinstance.py:1776} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/first_dag.py", line 30, in save_greeting
+    with open(path, mode) as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/trungdang/Desktop/greeting.txt'
+[2023-04-13T15:08:15.863+0000] {taskinstance.py:1332} INFO - Marking task as FAILED. dag_id=first_dag, task_id=save_greeting, execution_date=20230413T150600, start_date=20230413T150815, end_date=20230413T150815
+[2023-04-13T15:08:15.882+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 81 for task save_greeting ([Errno 2] No such file or directory: '/Users/trungdang/Desktop/greeting.txt'; 1657)
+[2023-04-13T15:08:15.923+0000] {local_task_job.py:212} INFO - Task exited with return code 1
+[2023-04-13T15:08:15.979+0000] {taskinstance.py:2596} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,38 +1,40 @@
-from datetime import timedelta, datetime
+from datetime import datetime
+
 from airflow import DAG
 from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
 
-dag = DAG(
-    'first_dag',
-    default_args={
-        'email': ['trungdq.httt@gmail.com'],
-        'email_on_failure': True,
-        'retries': 1,
-        'retry_delay': timedelta(minutes=5),
-    },
-    description='A first DAG sample by TrungDq',
-    schedule_interval="@once",  # Run each one day
-    start_date=datetime(2023, 4, 12),
-    tags=['airflow_demo'],
-)
 
-t1 = BashOperator(
-    task_id='print_date',
-    bash_command='echo Hello World',
-    dag=dag
-)
+def process_greeting(ti, *args, **kwargs):
+    gr = ti.xcom_pull(task_ids=['greeting'])
+    if not gr:
+        raise Exception('No greeting value.')
 
-t2 = BashOperator(
-    task_id='sleep',
-    bash_command='sleep 5',
-    retries=3,
-    dag=dag
-)
+    variable = kwargs.get("name", "Didn't get the key")
+    print(gr[0] + ' ' + variable)
+    return gr[0] + ' ' + variable
 
-t3 = BashOperator(
-    task_id='echo',
-    bash_command='echo There is Airflow demo by Trungdq',
-    dag=dag
-)
 
-t1 >> t2 >> t3
+with DAG(
+        dag_id='first_dag',
+        description='A first DAG sample by TrungDq',
+        schedule_interval="* * * * *",
+        # Run each one minute, hour, day, month, year,... using @once,... or like currently
+        start_date=datetime(2023, 4, 13),
+        tags=['airflow_demo'],
+        catchup=False
+) as dag:
+    # 1. Get current datetime
+    task_greeting = BashOperator(
+        task_id='greeting',
+        bash_command='echo Hello'
+    )
+
+    # 2. Process current datetime
+    task_process_greeting = PythonOperator(
+        task_id='process_greeting',
+        python_callable=process_greeting,
+        op_kwargs={"name": "Quoc Trung"}
+    )
+
+    task_greeting >> task_process_greeting
